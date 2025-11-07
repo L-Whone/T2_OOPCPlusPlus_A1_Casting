@@ -5,7 +5,7 @@
     @version 1.3 27/06/18
 */
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <iostream>
 

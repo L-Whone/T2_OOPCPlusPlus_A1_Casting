@@ -52,7 +52,16 @@ class Cake : public Dessert
 
 void ImplicitTypeConversion()
 {
-	// solve here
+	short myShort = 2;
+	int myInt = myShort;
+
+
+	Human* person_ptr = new Human();
+	Animal* animal_ptr = person_ptr;
+
+	delete person_ptr;
+	person_ptr = nullptr;
+	animal_ptr = nullptr;
 }
 
 //
@@ -66,7 +75,15 @@ void ImplicitTypeConversion()
 
 void CStyleCast()
 {
-	// solve here
+	float myFloat = 12.415;
+	int myInt = (int)myFloat;
+
+	Cake* myCake = new Cake();
+	Dessert* myDessert = (Dessert*)myCake;
+
+	delete myCake;
+	myCake = nullptr;
+	myDessert = nullptr;
 }
 
 //

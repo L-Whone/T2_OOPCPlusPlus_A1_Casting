@@ -15,14 +15,20 @@
 
 class Animal
 {
+public:
+	virtual ~Animal() {};
 };
 
 class Mammal : public Animal
 {
+public:
+	virtual ~Mammal() {};
 };
 
 class Human : public Mammal
 {
+public:
+	virtual ~Human() {};
 };
 
 class Food
@@ -96,7 +102,12 @@ void CStyleCast()
 
 void StaticCast()
 {
-	// solve here
+	Human* person_ptr = new Human();
+	Animal* animal_ptr = static_cast<Human*>(person_ptr);
+
+	delete person_ptr;
+	person_ptr = nullptr;
+	animal_ptr = nullptr;
 }
 
 //
@@ -110,7 +121,35 @@ void StaticCast()
 
 void DynamicCast()
 {
-	// solve here
+	Human* person_ptr = new Human();
+	Animal* animal_ptr;
+
+	if (Animal* checkIfAnimal_ptr = dynamic_cast<Animal*>(person_ptr))
+	{
+		std::cout << "SUCCESSFULLY Casted Human to Animal" << std::endl;
+		Animal* animal_ptr = dynamic_cast<Animal*>(person_ptr);
+	}
+	else 
+	{
+		std::cout << "FAILED to Cast Human to Animal" << std::endl;
+	}
+
+	Mammal* elephant_ptr = new Mammal();
+	Human* anotherPerson_ptr;
+
+	if (Human* checkIfHuman_ptr = dynamic_cast<Human*>(elephant_ptr))
+	{
+		std::cout << "SUCCESSFULLY Casted Elephant to Human" << std::endl;
+		Human* anotherPerson_ptr = dynamic_cast<Human*>(elephant_ptr);
+	}
+	else 
+	{
+		std::cout << "FAILED to Cast Elephant to Human" << std::endl;
+	}
+
+	delete person_ptr;
+	person_ptr = nullptr;
+	animal_ptr = nullptr;
 }
 
 //
@@ -123,7 +162,17 @@ void DynamicCast()
 
 void ReinterpretCast()
 {
-	// solve here
+	int myAscii = 65;
+	char* myChar = reinterpret_cast<char*>(&myAscii);
+
+	Human* person_ptr = new Human();
+	char* myCastedChar = reinterpret_cast<char*>(&person_ptr);
+
+	std::cout << myChar << std::endl;
+	std::cout << myCastedChar << std::endl;
+
+	delete person_ptr;
+	person_ptr = nullptr;
 }
 
 int main()
